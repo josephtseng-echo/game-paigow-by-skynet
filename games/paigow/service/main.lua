@@ -8,8 +8,6 @@ local service = require "service"
 service:main({
     uniqueservicelist = {
         { name = "hub", call = "start" },
-        { name = "login" },
-        { name = "room" },
-        { name = "play" }
+        { name = "login" }
     }
 })

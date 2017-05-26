@@ -1,5 +1,3 @@
-#! /usr/bin/env lua
---
 -- service.lua
 -- Copyright (C) 2017 josephzeng <josephzeng36@gmail.com>
 --
@@ -32,8 +30,15 @@ end
 
 function M:start(data)
     local CMD = data.cmd
+    local SOCK = data.sock
     skynet.start(function()
         skynet.dispatch("lua", function(_, session, cmd, subcmd, ...)
+            if SOCK ~= nil then
+                if cmd == "socket" then
+                    SOCK[subcmd](SOCK, ...)
+                    return
+                end
+            end
             local f = CMD[cmd]
             assert(f, "Unknown cmd : [%s] ", cmd)
             if session > 0 then

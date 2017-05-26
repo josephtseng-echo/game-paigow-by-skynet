@@ -1,4 +1,3 @@
--- 
 -- Copyright (C) 2017 josephzeng <josephzeng36@gmail.com>
 --
 -- Distributed under terms of the MIT license.
