@@ -11,3 +11,17 @@ cd ../
 
 ./skynet/skynet games/paigow/config/demo.lua
 </pre>
+
+# dir
+<pre>
+./games/paigow
+├── config
+├── cservice
+├── docs
+├── logs
+├── luaclib
+├── lualib
+├── run
+├── service
+└── test
+</pre>
