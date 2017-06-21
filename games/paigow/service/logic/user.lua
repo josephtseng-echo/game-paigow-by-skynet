@@ -20,17 +20,23 @@ function M:login(fd, cmd, sessionid, param)
 
 	local res = skynet.call("login", "lua", "login", param)
     local rb = {}
-    rb.msgtype = 1001
+    rb.msgtype = 101
     rb.status = 0
     rb.data = {}
     if res.row ~= nil then
-        rb.msgtype = 1002
+        rb.msgtype = 102
         rb.status = 1
         rb.data = res
         rb.serverlist = res.serverlist
     end
-    local packet = packet:pack(0x1001, sessionid, msg:conversion(rb))
+    local packet = packet:pack(0x101, sessionid, msg:conversion(rb))
     return packet
+end
+
+function M:info(fd, cmd, sessionid, param)
+end
+
+function M:update(fd, cmd, sessionid, param)
 end
 
 return M
