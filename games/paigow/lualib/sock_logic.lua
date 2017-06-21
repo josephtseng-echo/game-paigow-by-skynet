@@ -42,18 +42,18 @@ function M:data(fd, msg)
     local len = string.len(msg)
     if len <= 24 then
         -- packet len < 24
-        socket.write(fd, packet:pack(0x7001, sessionid, { status=0, msgtype=7001 }))
+        socket.write(fd, packet:pack(0x901, sessionid, { status=0, msgtype=901 }))
         return
     end
     local cmd, sessionid, body = packet:unpack(msg)
     if cmd == false then
         -- packet unpack false
-        socket.write(fd, packet:pack(0x7002, sessionid, { status=0, msgtype=7002 }))
+        socket.write(fd, packet:pack(0x902, sessionid, { status=0, msgtype=902 }))
         return
     end
     --local token = mredis:getInstance():get(rediskey:user_token(sessionid), data)
     --if token ~= body.token then
-    --	  socket.write(fd, packet:pack(0x7004, sessionid, { status=0, msgtype=9004 }))
+    --	  socket.write(fd, packet:pack(0x904, sessionid, { status=0, msgtype=9004 }))
     --	  return
     --end
     --table.remove(body, token)
@@ -70,13 +70,13 @@ end
 function M:dispatch(fd, cmd, sessionid, body)
     local c = self.dispatch_call[cmd]
     if c == nil then
-        socket.write(fd, packet:pack(0x7003, sessionid, { status=0, msgtype=7003 }))
+        socket.write(fd, packet:pack(0x903, sessionid, { status=0, msgtype=903 }))
     else
         local result = c.func(c.obj, fd, cmd, sessionid, body)
         if result then
             socket.write(fd, result)
         else
-            socket.write(fd, packet:pack(0x7003, sessionid, { status=0, msgtype=7005 }))
+            socket.write(fd, packet:pack(0x905, sessionid, { status=0, msgtype=905 }))
         end
     end
 end
