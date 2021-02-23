@@ -1,6 +1,6 @@
 # game
 <pre>
-git clone https://github.com/josephzeng36/game.git
+git clone https://github.com/josephtseng-echo/game_paigow_by_skynet.git
 cd game
 
 git clone https://github.com/cloudwu/skynet.git
